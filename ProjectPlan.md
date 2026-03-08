@@ -9,6 +9,36 @@
 ## Kaggle Clause
 
 # Timeline
+This project will be completed over several weeks through a structured plan that involves data acquisition, cleaning, integration, analysis, and final reporting.
+
+### Week 1 - Data Acquisition and Data Cleaning (Brisa and Yerin)
+- Download the EIA-860 and EIA-861 datasets from the U.S. Energy Information Administration (EIA).
+- Convert Excel files into CSV format to prepare for future analysis.
+- Upload datasets to GitHub Repository.
+- Clean the EIA-860 dataset with Python and correctly format the "Producer Type" and "Fuel Source" columns.
+- Clean the EIA-861 dataset in Python by reformatting the multi-layered headers and standardizing Sales (MWh), Revenues, Customers, and Average Price columns.
+- Prepare datasets for integration by summarizing generator-level data into State-Year and State-Year-Fuel groups.
+- Verify that state and year identifiers match across both datasets.
+
+### Week 2 - Data Integration (Brisa and Yerin)
+- Merge the EIA-860 and EIA-861 datasets using State and Year as shared keys.
+- Validate the merge by checking that states and years are properly matched.
+- Calculate Renewable Share, Fossil Share, Capacity per Customer, and Usage per Customer columns.
+
+### Week 3 - Exploratory Data Analysis (Brisa)
+- Generate time-series visualizations showing electricity price trends across states.
+- Create geographic visualizations to compare electricity prices by state.
+- Calculate statistical summary measures for the target variables.
+- Calculate correlations between capacity share, producer type, and electricity prices.
+
+### Week 4 - Statistical Analysis (Yerin)
+- Use Python to conduct regression analysis to test if higher renewable share is associated with electricity prices.
+- Evaluate model results and statistical significance.
+- Interpret model results in the context of electricity market changes.
+
+### Week 5 - Final Report (Brisa and Yerin)
+- Write the final report including methodology, analysis, and conclusions.
+- Ensure code is reproducible and upload the final project to GitHub.
 
 # Constraints
 While these datasets come from a reliable source, there are still chances of constraints as we work though our project plan. 
