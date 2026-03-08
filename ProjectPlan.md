@@ -1,12 +1,47 @@
 # Overview
+This project analyzes how electricity use and electricity prices have changed in each U.S. state from 2014 to 2024. It focuses on the shift in who generates power, spanning from traditional Electric Utilities to Independent Power Producers (IPPs), and explores whether this change is related to higher or lower electricity prices for residential, commercial, and industrial users. To do this, we use two main datasets from the U.S. Energy Information Administration. The first dataset describes supply-side data from the EIA-860 dataset, which provides information on power plant capacity, producer type, and fuel sources such as coal, natural gas, wind, and solar.  The second dataset represents demand-side data from the EIA-861 dataset, which includes electricity sales (MWh) and average prices (cents per kWh) across sectors and states. After merging the datasets by state and year, we create a timeline that links changes in generation structure to electricity usage and prices. Using this combined dataset, we aim to identify patterns across states and construct simple indicators, such as price relative to generation capacity, to compare areas that rely more on Electric Utilities with those that rely more on Independent Power Producers. 
 
 # Team
+Yerin Yun
+- Convert the "Existing Capacity" Excel file into a CSV, ensuring the "Producer Type" and "Fuel Source" columns are correctly formatted.
+- Summarize generator-level data into State-Year and State-Year-Fuel buckets by source type
+- Calculate the Renewable Share and Fossil Share of a state’s total capacity.
+- Lead the basic statistical modeling (e.g., regressions) to see if a higher renewable share correlates with lower or higher electricity prices.
+- Create "Capacity per Customer" metrics to assess grid reliability.
+
+Brisa Jasso
+- Convert the Excel file (HS861 2010-) into a CSV and clean the multi-layered headers.
+- Create standardized columns for Sales (MWh), Revenues, Customers, and Average Price.
+- Calculate Usage per Customer to measure residential and industrial efficiency.
+- Set up the master data merge (Join) between EIA-861 and EIA-860 by State and Year.
+- Build the initial time-series trends and geographic maps showing price variations across the U.S.
+
+Shared responsibilities
+- Clean data for both datasets. 
+- Finalize research questions and analysis plans.
+- Review each other’s code through pull requests; ensure both members appear in the git history.
+- Co‑write the report, prepare final figures, and polish the project repository.
 
 # Research or Business Question(s)
+1. Do states with a higher percentage of Independent Power Producers (IPPs) have lower average Residential Prices (Cents/kWh) compared to states dominated by traditional Electric Utilities?
+2. Do states with a higher share of Renewable Generation Capacity (such as wind and solar) have higher or lower average Electricity Prices across different sectors compared to states that rely on fossil fuels?
+3. How do trends in Electricity Use per Customer differ for Residential, Commercial, and Industrial sectors when a state's Total Capacity significantly changes?
 
 # Datasets
+Two datasets from the U.S. Energy Information Administration (EIA) provide the supply and demand perspectives of the U.S. electricity market. Dataset 1 (EIA-861) represents the demand side of our project, and it has columns of annual electricity sales, revenues, and average prices across the residential, commercial, industrial, and transportation sectors from 2014 to 2024. Dataset 2 (EIA-860) represents the supply side and contains information on power generation infrastructure and ownership, including fuel sources (such as coal, natural gas, wind, and solar) and producer types such as Electric Utilities and Independent Power Producers. These datasets are highly compatible and will be integrated using Year and State Code as common identifiers. This integration allows us to link changes in a state's electricity generation capacity and producer structure to electricity prices paid by consumers. Both datasets are sourced directly from the U.S. federal government, ensuring high standards of data quality, accuracy, and reproducibility.
+
+Dataset 1- EIA-861 Annual Electric Power Industry Report (released: 10/7/2025)
+- Annual sales to ultimate customers by state and sector
+- Date range: 2014 – 2024 (we will use this timeframe of data only)
+- Columns - Year, State, Residential, Commercial, Industrial, Transportation,  Total (Revenues (thousand dollars), sales (MWh), Customers (count), Price (Cents/kWh) )
+
+Dataset 2 - EIA-860 Annual Electric Generator Report (released: 9/9/2025)
+- Existing Nameplate and Net Summer Capacity by Energy Source, Producer Type and State (EIA-860)1, 3
+- Date range: 1990 – 2024 (2014 – 2024 (we will use this timeframe of data only)
+- Columns - Year, State Code, Producer Type, Fuel Source, Facilities, Nameplate Capacity (Megawatts), Summer Capacity (Megawatts)
 
 ## Kaggle Clause
+Our team doesn't use Kaggle datasets.
 
 # Timeline
 This project will be completed over several weeks through a structured plan that involves data acquisition, cleaning, integration, analysis, and final reporting.
