@@ -47,7 +47,7 @@ First, the datasets contain complex structures such as the multi-layered headers
 
 Second, challenges may be presented during the merging of the EIA-860 and EIA-861 datasets. Formats or definitions may vary across dataset or even update over time. It is important to repeatedly validate and keep track of what version of the datasets we are working with to ensure accurate merging.
 
-Third, our analyses will be completed at the state level which can be an issue during analysis and reporting. Our state calculations may be too broad and miss trends or patterns in the electric market within states or other local levels.
+Third, our analyses will be completed at the state level which can be an issue during analysis and reporting. Our state calculations may be too broad or skewed because it captures the entire state and does not account for variations within states. This may lead to missed trends or patterns in the electric market within states or other local levels.
 
 Finally, we focused our project on data for generation capacity and producer type, but electricity prices likely have other highly impactful variables that are not captured by our datasets. For example, electricity prices can be influenced by weather, regional regulations, or fuel prices. Thus, we cannot make any causal relationships, but we can find correlations with the variables we do cover.
 
