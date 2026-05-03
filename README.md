@@ -45,10 +45,8 @@ Overall, the EIA datasets are reliable and cleanly structured, but their documen
 
 
 ## Data Cleaning
-EIA-860 Cleaning
 The EIA-860 dataset was first opened in OpenRefine to visually inspect the structure and filter the data. Two operations were performed in OpenRefine: the Year column was filtered to retain only rows from 2014 to 2023, reducing the dataset from 55,892 rows to the working range, and rows where Fuel Source was "All Sources" were removed to prevent double-counting of total capacity figures. The filtered dataset was exported as EIA-860.csv. In Python, the file was read using pd.read_csv('EIA-860.csv', header=1), passing header=1 to use the second row as column names since the first row of the exported file contained a title string rather than headers. The cleaned file was saved as EIA_860_clean.csv.  
 
-EIA-861 Cleaning
 The EIA-861 dataset required more preprocessing due to its three-level header structure. The file was read using pd.read_excel() with header=[0,1,2] to capture all three header levels as a MultiIndex. A custom loop then flattened the MultiIndex into single descriptive column names using the format "{Category} - {Subcategory} ({Unit})", for example "RESIDENTIAL - Price (Cents/kWh)". The first two columns were renamed to Year and STATE directly. This produced a flat, consistently named column structure suitable for analysis and merging. The cleaned file was saved as EIA_861_Total_Electric_Industry_clean.csv.
 Merging and Derived Columns
 The two cleaned datasets were merged using an inner join on Year and State Code. The duplicate STATE column from EIA-861 was dropped after the merge. Rows where Producer Type equaled "Total Electric Power Industry" were removed to eliminate summary rows that would double-count capacity figures. The result was saved as EIA_merged_final.csv with 10,800 rows.
@@ -65,9 +63,8 @@ We can see that the model explained a high portion of variation in electricity p
 Overall, our regression analysis findings suggest that states with more renewable energy tend to have lower electricity prices over time. This makes intuitive sense since once renewable energy sources are built, the fuel is free and operating renewables becomes cheaper than operating coal or natural gas plants. An important conclusion from these findings is that even across the three sectors, we still saw the price reducing effects, meaning that customers from all sectors get to benefit from a state’s transition to cleaner energy.
 We also created a visualization on Hugging Face. This interactive dashboard is to depict the energy usage of states in the US from 2014-2023. To use this dashboard, start by selecting a specific Year and Price Sector (Residential, Commercial, or Industrial) from the controls on the top-left to see how the electricity market looked at that time. The top chart displays each state as a dot; its position shows the balance between that state's Renewable Capacity and its Electricity Price, while the color indicates the influence of Independent Power Producers (IPPs), which are the private energy producers. The Renewable Capacity is the percentage of the state's clean energy usage. The Electricity Price is simply the price of electricity in the state by cents per kilowatt. Users can click on any state's dot to lock in your selection, which updates the bottom chart to reveal that state’s complete energy usage breakdown. 
 Across the 2014–2023 period, average residential electricity prices increased steadily from 13.16 cents/kWh in 2014 to 16.64 cents/kWh in 2023, with the sharpest increase occurring after 2021. Commercial prices rose from 11.05 to 12.95 cents/kWh and industrial prices from 8.11 to 9.43 cents/kWh over the same period. This increasing pricing trend was consistent across all sectors and was visible in the line plot generated from the merged dataset.
-In the first research question, states with higher IPP share did not uniformly show lower residential prices. The IPP share across states ranged from 0.4% to 99.4% with a mean of approximately 38%, which reflects wide variation in state-level deregulation. The relationship between IPP share and price appears to depend heavily on regional market structure rather than IPP presence alone.
-Regarding the second research question, renewable share across states averaged approximately 23%, ranging from 1.2% to 83.2%. States with high renewable capacity, such as those with significant wind or hydroelectric resources, didn’t consistently show higher or lower prices. It suggests that fuel mix alone can’t determine electricity price outcomes without considering infrastructure costs, regulatory, and other energy market context.
-For the third research question, trends in electricity use per customer varied across sectors as state capacity changed, with industrial customers showing more sensitivity to capacity shifts than residential customers.
+
+In the first research question, states with higher IPP share did not uniformly show lower residential prices. The IPP share across states ranged from 0.4% to 99.4% with a mean of approximately 38%, which reflects wide variation in state-level deregulation. The relationship between IPP share and price appears to depend heavily on regional market structure rather than IPP presence alone. Regarding the second research question, renewable share across states averaged approximately 23%, ranging from 1.2% to 83.2%. States with high renewable capacity, such as those with significant wind or hydroelectric resources, didn’t consistently show higher or lower prices. It suggests that fuel mix alone can’t determine electricity price outcomes without considering infrastructure costs, regulatory, and other energy market context. For the third research question, trends in electricity use per customer varied across sectors as state capacity changed, with industrial customers showing more sensitivity to capacity shifts than residential customers.
 
 
 ## Future Work
@@ -77,13 +74,13 @@ For the third research question, trends in electricity use per customer varied a
 [Your challenges here]
 
 ## Reproducing
-Clone the project GitHub repository to your local machine.
-Install required Python packages by running pip install -r requirements.txt.
-Download the raw data files from the U.S. Energy Information Administration at https://www.eia.gov/electricity/data/state/: download HS861 2010-.xlsx (EIA-861) and Existcapacity_annual.xlsx (EIA-860) and place them in the data/raw/ folder of the repository. (If files exceed 50MB and are hosted on Box, download from the Box link provided in the repository and save to the same location.)
-Open EIA-860.xlsx in OpenRefine, filter the Year column to 2014–2023, remove rows where Fuel Source equals "All Sources", and export as EIA-860.csv into data/raw/.
-Run the cleaning and merging notebook or script: python scripts/clean_and_merge.py. This produces EIA_860_clean.csv, EIA_861_Total_Electric_Industry_clean.csv, EIA_merged_final.csv, and fuel_merged.csv in the data/ directory.
-Run the analysis and visualization script: python scripts/analyze.py. This produces all figures and regression outputs saved to the results/ directory.
-All outputs, including figures and result tables, should match those described in the Findings section of this report.
+1. Clone the project GitHub repository to your local machine.
+2. Install required Python packages by running pip install -r requirements.txt.
+3. Download the raw data files from the U.S. Energy Information Administration at https://www.eia.gov/electricity/data/state/: download HS861 2010-.xlsx (EIA-861) and Existcapacity_annual.xlsx (EIA-860) and place them in the data/raw/ folder of the repository. (If files exceed 50MB and are hosted on Box, download from the Box link provided in the repository and save to the same location.)
+4. Open EIA-860.xlsx in OpenRefine, filter the Year column to 2014–2023, remove rows where Fuel Source equals "All Sources", and export as EIA-860.csv into data/raw/.
+5. Run the cleaning and merging notebook or script: python scripts/clean_and_merge.py. This produces EIA_860_clean.csv, EIA_861_Total_Electric_Industry_clean.csv, EIA_merged_final.csv, and fuel_merged.csv in the data/ directory.
+6. Run the analysis and visualization script: python scripts/analyze.py. This produces all figures and regression outputs saved to the results/ directory.
+7. All outputs, including figures and result tables, should match those described in the Findings section of this report.
 
 
 ## References
