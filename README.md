@@ -77,10 +77,28 @@ In the first research question, states with higher IPP share did not uniformly s
 
 
 ## Future Work
-[Your future work here]
+The goal of this project was to understand the relationship between renewable energy and electricity prices across U.S. states and different customer sectors. We were able to learn a lot from our analysis, but there is always room for improvement.
+The first thing our team would like to explore in the future is learning more about renewable energy in the modern world, especially as renewable energy becomes increasingly popular. The data we used was historical data from 2014 to 2023, and gave us a good basis for understanding how renewable energy has impacted electricity prices over time. However, the energy landscape is changing rapidly. Solar and battery storage costs have continued to fall sharply in recent years, and several states have set ambitious targets to reach 100% clean energy within the next decade. Incorporating more recent data as it becomes available would allow future analyses to capture whether the negative association we found between renewable share and prices strengthens over time as the technology matures and upfront infrastructure costs are recovered. 
+
+A second avenue for future work involves incorporating additional policy variables. States have adopted renewable energy policies at very different rates and approaches. The current model controls for time and state differences through fixed effects, but it cannot account for time-varying policy changes within states. Including policy indicators as additional control variables would help distinguish whether price changes are driven by the renewable energy mix itself or by the regulatory environment that we see rising.
+Another future consideration is expanding our data. As we completed the regression analysis, we had to consider all the levels and factors that can affect our prices and had to make choices like controlling for state or separating the sector levels. Another level to consider is geographic dimensions. For example, a state like California contains both expensive urban utilities and cheaper rural co-ops, so aggregating these together can obscure meaningful patterns. Expanding the data to be more detailed and on a smaller geographical scale could reveal more insights or findings.
+
+Furthermore, our project measured renewable energy adoption through capacity share. However, it could be more accurate to represent it through generation share, which is how much electricity renewables actually produced and can better showcase the market impact. A state could have a high renewable capacity share but still generate most of its electricity from natural gas if wind is not blowing and the sun is not shining. Future analysis using generation share rather than capacity share could produce different and potentially more precise estimates.
+
+Finally, the third research question — how electricity use per customer changes as state capacity shifts — was the least developed in our current analysis and represents the clearest opportunity for deeper work. Time-series modeling at the state level, or panel models that interact capacity changes with sector type, could reveal whether industrial customers genuinely respond differently to generation mix changes than residential customers, and whether efficiency improvements or economic factors are driving consumption trends.
+
 
 ## Challenges
-[Your challenges here]
+Throughout this project, our team encountered several challenges that required us to slow down, research, and make careful decisions before moving forward.
+
+The first challenge we encountered was the lack of documentation for both datasets. Both EIA datasets are publicly available and were decently clean and well-structured, but they assume a level of familiarity with the electricity industry that part of our team did not have coming in. There was no documentation of field meaning or context, which meant that understanding what certain columns actually represented required outside research. For example, understanding the difference between nameplate capacity and summer capacity, or knowing what producer types like Combined Heat and Power actually meant in practice, required us to look beyond the dataset itself. This slowed down our early progress and reminded us that working with real world data often requires extra research and communication from a team.
+
+A second and closely related challenge was the broader context of the electricity market itself. Electricity generation and pricing is a niche and technical topic, and a lot of the language surrounding it was unfamiliar to us at the start of the project. Understanding not just what the data said, but what it meant in the real world, was something we had to actively work toward throughout the project. This was especially important during the analysis and findings stages, where we needed to interpret our regression results in a way that connected back to how electricity markets actually function. We addressed this by researching concepts as they came up and leaning on external resources to build enough background knowledge to speak confidently about our findings.
+
+The third and most technically demanding challenge was merging the two datasets. Our original plan was to structure the EIA-860 data at the State-Year level and the EIA-861 data at the State-Year-Fuel level, but as we worked more closely with the data, it became clear that this structure did not align well with our research questions. The EIA-861 data was organized by customer sector, not by fuel source, so the structure needed to reflect that. Deciding what each row in the final merged dataset should represent required us to think carefully about what unit of analysis made the most sense for answering our research questions. We ultimately landed on State-Year-Sector for the demand side and State-Year for the supply side, but that decision involved a lot of discussion and constant review of our project plan to keep us on track. This challenge reinforced how important it is to think through data structure decisions early, since choices made at the merging stage affect every following step of the analysis.
+
+Overall, these challenges taught us that data analysis is not just about writing code. It is crucial to understand your data, the context it lives in, and that making thoughtful structural decisions before running any models are just as important as the technical steps themselves. Additionally, prior to taking IS 477, I did not know the value of data documentation and how much impact that has on the data user. This project let us explore every step of the data lifecycle and how they all work together.
+
 
 ## Reproducing
 1. Clone the project GitHub repository to your local machine.
@@ -93,4 +111,9 @@ In the first research question, states with higher IPP share did not uniformly s
 
 
 ## References
-[Your references here]
+U.S. Energy Information Administration. (2025). EIA-861 Annual Electric Power Industry Report: Annual sales to ultimate customers by state and sector (Released October 7, 2025). https://www.eia.gov/electricity/data/state/ 
+
+
+U.S. Energy Information Administration. (2025). EIA-860 Annual Electric Generator Report: Existing nameplate and net summer capacity by energy source, producer type, and state (Released September 9, 2025). https://www.eia.gov/electricity/data/state/ 
+
+OpenRefine. (2024). OpenRefine (Version 3.x) [Software]. https://openrefine.org 
